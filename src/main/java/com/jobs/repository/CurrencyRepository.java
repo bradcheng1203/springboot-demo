@@ -16,7 +16,6 @@ public class CurrencyRepository {
 	private JdbcTemplate jdbcTemplate;
 	
 	public void addCurrency(CurrencyModel curr ) throws Exception {
-		// System.out.println("EXCUTE INSERT Currency");
 	    jdbcTemplate.update("INSERT INTO CurrencyInfo( Date,USD_NTD, RMB_NTD, EUR_USD, USD_JPY,  " +
 	    	" GBP_USD, AUD_USD, USD_HKD, USD_RMB, USD_ZAR, " +
 	        " NZD_USD, CREATE_DATE ) " +

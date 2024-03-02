@@ -9,10 +9,10 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-public class MyX509TrustManager implements X509TrustManager {
+public class MX509TrustManager implements X509TrustManager {
 
     X509TrustManager sunJSSEX509TrustManager;
-    MyX509TrustManager() throws Exception {
+    MX509TrustManager() throws Exception {
 
         KeyStore ks = KeyStore.getInstance("JKS");
         ks.load(new FileInputStream("C:/Java/jdk11.0.17/lib/security/cacerts"),"changeit".toCharArray());

@@ -20,11 +20,6 @@ public class ForexController {
 	@Autowired
 	CurrencyService currencyService;	
 	
-	//@RequestMapping(value = "/forexquery2", method = RequestMethod.GET)
-	//public String forexquery2() {
-	//	return "forexquery2";
-	//}
-	
 	// http://localhost:8080/schedulers/forexquer
 	@RequestMapping(value = "/forexquery", method = RequestMethod.POST )
     public String forexquery( HttpServletRequest request, HttpServletResponse response ) throws Exception {

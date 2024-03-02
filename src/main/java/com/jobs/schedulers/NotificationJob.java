@@ -44,7 +44,7 @@ public class NotificationJob {
 	
     public static JSONArray readJsonFromUrl(String url) throws Exception {
      	SSLContext sslcontext = SSLContext.getInstance("SSL", "SunJSSE");
-		sslcontext.init(null, new TrustManager[] { new MyX509TrustManager() }, new java.security.SecureRandom());
+		sslcontext.init(null, new TrustManager[] { new MX509TrustManager() }, new java.security.SecureRandom());
 		URL serverUrl = new URL(url);
 		HttpsURLConnection conn = (HttpsURLConnection) serverUrl.openConnection();
 		conn.setSSLSocketFactory(sslcontext.getSocketFactory());

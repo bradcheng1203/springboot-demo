@@ -1,5 +1,6 @@
 package com.jobs.schedulers;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,11 @@ public class NotificationJobTest {
 	private NotificationJob notificationJob;
 	
 	@Test
-	public void NotifyAt06pm(){
-		notificationJob.NotifyAt06pm();		
+	public void NotifyAt06pm()throws InterruptedException{
+		notificationJob.NotifyAt06pm();
+		int currencyCountExpected = 22 ;
+		System.out.println("CurrencyCount="+notificationJob.getCurrencyCount());
+		Assert.assertEquals(notificationJob.getCurrencyCount(),currencyCountExpected);		
 	}
 }
 

@@ -25,6 +25,8 @@ import com.jobs.service.CurrencyService;
 @Component
 public class NotificationJob {
 	
+	private int currencyCount = 0;
+	
 	@Autowired
 	CurrencyService currencyService;
 	
@@ -60,7 +62,7 @@ public class NotificationJob {
     public void updateCurrency() throws Exception {    	
     	currencyService.deleteCurrencyAll();    	
 		JSONArray json = readJsonFromUrl("https://openapi.taifex.com.tw/v1/DailyForeignExchangeRates");	
-		for(int i=0;i<json.length();i++) {						
+		for(int i=0;i<json.length();i++) {			
 			JSONObject jsobj = new JSONObject(json.get(i).toString());
 			CurrencyModel curr = new CurrencyModel();
 	    	curr.setDate( jsobj.get("Date").toString() );
@@ -74,9 +76,9 @@ public class NotificationJob {
 	    	curr.setUsd_rmb( jsobj.get("USD/RMB").toString() );
 	    	curr.setUsd_zar( jsobj.get("USD/ZAR").toString() );
 	    	curr.setNzd_usd( jsobj.get("NZD/USD").toString() );	    	
-	    	currencyService.addCurrency(curr);
-		}
-		if(json.length()>0) {
+	    	currencyService.addCurrency(curr);		}
+		if(json.length()>0) {			
+			currencyCount = json.length() ;
 			System.out.println("Total Records="+ json.length() );
 		} else {
 			System.out.println("Total Records=0");
@@ -88,8 +90,7 @@ public class NotificationJob {
         System.out.println("Its 6 pm job, Start...");
         
         try {
-			updateCurrency();
-			
+			updateCurrency();			
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");  
 	        Date date = new Date();    	
 	        System.out.println("DateFormat=" + formatter.format(date) );
@@ -99,6 +100,10 @@ public class NotificationJob {
 			e.printStackTrace();
 			System.out.println("Its 6 pm job, Exception:" + e.getMessage());
 		}
+    }
+    
+    public int getCurrencyCount() {
+    	return currencyCount;
     }
 }
 

@@ -18,7 +18,12 @@ import com.jobs.service.CurrencyService;
 public class ForexController {
 
 	@Autowired
-	CurrencyService currencyService;	
+	CurrencyService currencyService;
+	
+	@RequestMapping(value = "/forexquery2", method = RequestMethod.GET )
+    public String forexquery2( HttpServletRequest request, HttpServletResponse response ) throws Exception {
+		return "OK";
+    }
 	
 	// http://localhost:8080/schedulers/forexquer
 	@RequestMapping(value = "/forexquery", method = RequestMethod.POST )

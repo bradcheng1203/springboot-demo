@@ -1,4 +1,4 @@
-package com.jobs.schedulers;
+package com.jobs;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

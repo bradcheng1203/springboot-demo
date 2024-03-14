@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,6 +15,7 @@ import com.jobs.service.CurrencyService;
 @RunWith(SpringRunner.class)
 @ComponentScan({"com.jobs.schedulers","com.jobs.model","com.jobs.controller","com.jobs.repository","com.jobs.service"})
 @EntityScan({"com.jobs.schedulers","com.jobs.model","com.jobs.controller","com.jobs.repository","com.jobs.service"})
+@EnableAutoConfiguration
 @SpringBootTest(classes = {CurrencyService.class, NotificationJob.class})
 public class NotificationJobTest {
 

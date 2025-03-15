@@ -8,7 +8,9 @@ public interface CurrencyService {
 	
 	public void addCurrency(CurrencyModel currencyModel) throws Exception;
 	
-	public void deleteCurrencyAll() throws Exception;	
+	public void deleteCurrencyAll() throws Exception;
+	
+	public void deleteByDate(String date) throws Exception;
 	
 	public JSONObject forexquery(String startDate,String endDate, String curr) throws Exception;
 

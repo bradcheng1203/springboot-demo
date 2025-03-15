@@ -11,12 +11,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.jobs.model.CurrencyModel;
 import com.jobs.repository.CurrencyRepository;
 import com.jobs.service.CurrencyService;
@@ -33,7 +31,11 @@ public class CurrencyServiceImpl implements CurrencyService {
 	
 	public void deleteCurrencyAll() throws Exception{
 		currencyRepository.deleteAll();
-	}	
+	}
+	
+	public void deleteByDate(String date) throws Exception{
+		currencyRepository.delete(date);
+	}
 	
 	public JSONObject forexquery(String startDate,String endDate, String curr) throws Exception {
 		JSONObject destJson = new JSONObject();
@@ -59,7 +61,7 @@ public class CurrencyServiceImpl implements CurrencyService {
 							Map map = (Map) currList.get(i);
 							JSONObject obj = new JSONObject();
 							obj.put("date", map.get("Date"));
-							obj.put("usd", map.get("USD_NTD"));
+							obj.put("usd", map.get("USDNTD"));
 							arrayJson.put(obj);
 						}
 						destJson.put("currency", arrayJson );

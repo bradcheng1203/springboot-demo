@@ -1,16 +1,13 @@
 package com.jobs.controller;
 
 import java.util.stream.Collectors;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.jobs.service.CurrencyService;
 
 @RestController
@@ -20,6 +17,7 @@ public class ForexController {
 	@Autowired
 	CurrencyService currencyService;
 	
+	//http://localhost:8080/schedulers/forexquery2
 	@RequestMapping(value = "/forexquery2", method = RequestMethod.GET )
     public String forexquery2( HttpServletRequest request, HttpServletResponse response ) throws Exception {
 		return "OK";
@@ -40,6 +38,7 @@ public class ForexController {
 			
 			destJson = currencyService.forexquery(startDate, endDate, currency );		
 		} catch (Exception e) {
+			e.printStackTrace();
 			JSONObject errjson = new JSONObject();
 			errjson.put("code","E002");
 			errjson.put("message","參數格式錯誤");
@@ -48,3 +47,5 @@ public class ForexController {
 		return destJson.toString();
     }
 }
+
+

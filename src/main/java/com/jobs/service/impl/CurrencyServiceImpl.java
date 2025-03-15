@@ -85,12 +85,12 @@ public class CurrencyServiceImpl implements CurrencyService {
 	}
 	
 	private String dateCalculator(int year,int day){
-		Date currentDate = new Date();	
+		Date currentDate = new Date();
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(currentDate);
 		if(year!=0) calendar.add(Calendar.YEAR, year );
 		if(day!=0) calendar.add(Calendar.DAY_OF_MONTH , day );
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");	
 		String oneYearAgo = sdf.format(calendar.getTime());
 		return oneYearAgo;
 	}
@@ -112,7 +112,7 @@ public class CurrencyServiceImpl implements CurrencyService {
 	                LocalTime lt = LocalTime.parse(value, fomatter);
 	                String result = lt.format(fomatter);
 	                return result.equals(value);
-	            } catch (DateTimeParseException e2) {	                
+	            } catch (DateTimeParseException e2) {            
 	            }
 	        }
 	    }

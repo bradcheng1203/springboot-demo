@@ -14,6 +14,7 @@ public class CurrencyRepository {
 	private JdbcTemplate jdbcTemplate;
 	
 	public void addCurrency(CurrencyModel curr ) throws Exception {
+		System.out.println("add Currency Date="+curr.getDate());
 	    jdbcTemplate.update("INSERT INTO CurrencyInfo(Date, USDNTD, RMBNTD, EURUSD, USDJPY,  " +
 	    	" GBPUSD, AUDUSD, USDHKD, USDRMB, USDZAR, NZDUSD, CREATE_DATE ) " +
 	  		" VALUES ('"+curr.getDate()+"' , '"+curr.getUsdNtd()+"' ,'"+curr.getRmbNtd()+"' ,'"+curr.getEurUsd()+"' ,'"+curr.getUsdJpy() +"'," +
@@ -27,7 +28,7 @@ public class CurrencyRepository {
 	}
 	
 	public void delete(String date) throws Exception {
-		System.out.println("Delete Currency All.");
+		System.out.println("Delete Currency Date="+date);
 		jdbcTemplate.update("Delete from CurrencyInfo where date = " + date );
 	}
 	

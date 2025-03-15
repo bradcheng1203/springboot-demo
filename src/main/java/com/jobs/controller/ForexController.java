@@ -36,7 +36,7 @@ public class ForexController {
 			String endDate = json.get("endDate").toString().trim();
 			String currency = json.get("currency").toString().trim();
 			
-			destJson = currencyService.forexquery(startDate, endDate, currency );		
+			destJson = currencyService.forexquery(startDate, endDate, currency );	
 		} catch (Exception e) {
 			e.printStackTrace();
 			JSONObject errjson = new JSONObject();

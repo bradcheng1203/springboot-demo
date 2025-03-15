@@ -59,7 +59,7 @@ public class NotificationJob {
     	HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
 		
 		URL serverUrl = new URL(url);
-		HttpsURLConnection conn = (HttpsURLConnection) serverUrl.openConnection();		
+		HttpsURLConnection conn = (HttpsURLConnection) serverUrl.openConnection();	
 		conn.setRequestMethod("GET");
 		conn.setRequestProperty("Content-type", "application/json");
 		conn.setInstanceFollowRedirects(false);
@@ -73,11 +73,11 @@ public class NotificationJob {
 			while ((str = bufferedReader.readLine()) != null) {
 				buffer.append(str);
 			}
-		}		
+		}
         return new JSONArray(buffer.toString());
 	}
     
-    public void updateCurrency() throws Exception { 	
+    public void updateCurrency() throws Exception {
     	// currencyService.deleteCurrencyAll();
 		JSONArray json = readJsonFromUrl("https://openapi.taifex.com.tw/v1/DailyForeignExchangeRates");
 		for(int i=0;i<json.length();i++) {
@@ -93,8 +93,8 @@ public class NotificationJob {
 	    	curr.setUsdHkd( jsobj.get("USD/HKD").toString() );
 	    	curr.setUsdRmb( jsobj.get("USD/RMB").toString() );
 	    	curr.setUsdZar( jsobj.get("USD/ZAR").toString() );
-	    	curr.setNzdUsd( jsobj.get("NZD/USD").toString() );	    	
-	    	currencyService.deleteByDate( jsobj.get("Date").toString() );	    	
+	    	curr.setNzdUsd( jsobj.get("NZD/USD").toString() ); 	
+	    	currencyService.deleteByDate( jsobj.get("Date").toString() );    	
 	    	currencyService.addCurrency(curr);
 	    }
 		System.out.println("Total Records="+ json.length() );
@@ -102,12 +102,12 @@ public class NotificationJob {
     
     @Scheduled(cron = "${six.pm}")
     public void NotifyAt06pm(){
-    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");	
+    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     	System.out.println("Its 6 pm job, Start..." + formatter.format(new Date()) );
         
         try {
         	System.out.println("updateCurrency()" );
-			this.updateCurrency();	        
+			this.updateCurrency();
 	        System.out.println("Its 6 pm job, End..."+ formatter.format(new Date()) );
 		} catch (Exception e) {
 			e.printStackTrace();
